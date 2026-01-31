@@ -1,6 +1,4 @@
-"""
-Routes API pour le système expert
-"""
+
 from fastapi import APIRouter, HTTPException
 from typing import List
 from .models import (
@@ -25,29 +23,16 @@ inference_engine = InferenceEngine(knowledge_base)
 
 @router.post("/consult", response_model=ConsultationResponse)
 async def consult(request: ConsultationRequest):
-    """
-    Effectue une consultation du système expert
-    
-    Args:
-        request: Requête contenant les faits de l'utilisateur
-        
-    Returns:
-        Recommandations et explications du système expert
-    """
+
     try:
-        # Réinitialiser le moteur pour une nouvelle consultation
         inference_engine.reset()
         
-        # Effectuer l'inférence
         final_facts, trace = inference_engine.infer(request.facts)
         
-        # Obtenir les recommandations
         recommendations = inference_engine.get_recommendations(final_facts)
         
-        # Obtenir les explications
         explanations = inference_engine.explain()
         
-        # Construire la réponse
         return ConsultationResponse(
             recommendations=[
                 Recommendation(**rec) for rec in recommendations
@@ -65,12 +50,7 @@ async def consult(request: ConsultationRequest):
 
 @router.get("/questions", response_model=QuestionsResponse)
 async def get_questions_endpoint():
-    """
-    Retourne la liste des questions à poser à l'utilisateur
     
-    Returns:
-        Liste des questions du questionnaire
-    """
     try:
         questions = get_questions()
         return QuestionsResponse(
@@ -83,12 +63,7 @@ async def get_questions_endpoint():
 
 @router.get("/rules", response_model=RulesResponse)
 async def get_rules():
-    """
-    Retourne la liste des règles du système expert (pour debug/admin)
-    
-    Returns:
-        Liste des règles avec leurs détails
-    """
+
     try:
         rules_info = []
         for rule in knowledge_base:
@@ -114,7 +89,6 @@ async def get_rules():
 
 @router.get("/health")
 async def health_check():
-    """Endpoint de santé pour vérifier que l'API fonctionne"""
     return {
         "status": "healthy",
         "total_rules": len(knowledge_base),

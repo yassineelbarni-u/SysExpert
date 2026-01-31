@@ -1,25 +1,15 @@
-"""
-Base de connaissances ENRICHIE du système expert
-Contient des règles détaillées pour tous les aspects d'architecture et d'infrastructure
-"""
 from typing import List, Dict
 from .rule import Rule
 
 
 def create_knowledge_base() -> List[Rule]:
-    """
-    Crée et retourne la base de connaissances complète et enrichie
-    
-    Returns:
-        Liste de toutes les règles du système expert
-    """
+
     rules = []
     
-    # ============================================================================
-    # RÈGLES D'ARCHITECTURE APPLICATIVE (détaillées)
-    # ============================================================================
+    # REGLES D'ARCHITECTURE APPLICATIVE (détaillées)
     
-    # Règle 1: Architecture Microservices pour haute scalabilité
+    
+    # Regle 1: Architecture Microservices pour haute scalabilité
     rules.append(Rule(
         name="R1_Microservices_Scalabilite",
         conditions={
@@ -37,7 +27,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle 2: Architecture Monolithique pour petite équipe et budget limité
+    # Regle 2: Architecture Monolithique pour petite équipe et budget limité
     rules.append(Rule(
         name="R2_Monolithique_Budget",
         conditions={
@@ -55,11 +45,10 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # ============================================================================
-    # RÈGLES DE SCALABILITÉ (NOUVELLES - très détaillées)
-    # ============================================================================
     
-    # Règle: Scalabilité Horizontale pour Microservices
+    # REGLES DE SCALABILITÉ (NOUVELLES - très détaillées)
+    
+    # Regle: Scalabilité Horizontale pour Microservices
     rules.append(Rule(
         name="R_Scalabilite_Horizontale_Microservices",
         conditions={
@@ -75,7 +64,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle: Scalabilité Verticale pour Monolithique
+    # Regle: Scalabilité Verticale pour Monolithique
     rules.append(Rule(
         name="R_Scalabilite_Verticale_Monolithique",
         conditions={
@@ -92,7 +81,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Règle: Scalabilité Horizontale pour Monolithique haute charge
+    # Regle: Scalabilité Horizontale pour Monolithique haute charge
     rules.append(Rule(
         name="R_Scalabilite_Horizontale_Monolithique_Haute",
         conditions={
@@ -109,11 +98,9 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # ============================================================================
-    # RÈGLES DE CHOIX TECHNOLOGIQUE (Java vs JavaScript vs autres)
-    # ============================================================================
+    # REGLES DE CHOIX TECHNOLOGIQUE (Java vs JavaScript vs autres)
     
-    # Règle: Java pour applications enterprise
+    # Regle: Java pour applications enterprise
     rules.append(Rule(
         name="R_Tech_Java_Enterprise",
         conditions={
@@ -131,7 +118,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle: JavaScript/Node.js pour applications temps réel
+    # Regle: JavaScript/Node.js pour applications temps réel
     rules.append(Rule(
         name="R_Tech_NodeJS_RealTime",
         conditions={
@@ -148,7 +135,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle: JavaScript pour équipe frontend
+    # Regle: JavaScript pour équipe frontend
     rules.append(Rule(
         name="R_Tech_JavaScript_FullStack",
         conditions={
@@ -165,7 +152,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Règle: Python pour data-intensive
+    # Regle: Python pour data-intensive
     rules.append(Rule(
         name="R_Tech_Python_Data",
         conditions={
@@ -181,11 +168,11 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # ============================================================================
-    # RÈGLES D'INFRASTRUCTURE ET TAILLE SERVEUR (très détaillées)
-    # ============================================================================
     
-    # Règle: Cloud Public pour scalabilité critique
+    # REGLES D'INFRASTRUCTURE ET TAILLE SERVEUR (très détaillées)
+    
+    
+    # Regle: Cloud Public pour scalabilité critique
     rules.append(Rule(
         name="R7_Cloud_Public",
         conditions={
@@ -203,7 +190,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle: Taille serveur pour charge faible
+    # Regle: Taille serveur pour charge faible
     rules.append(Rule(
         name="R_Serveur_Petit_Charge_Faible",
         conditions={
@@ -220,7 +207,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle: Taille serveur pour charge moyenne
+    # Regle: Taille serveur pour charge moyenne
     rules.append(Rule(
         name="R_Serveur_Moyen_Charge_Moyenne",
         conditions={
@@ -236,7 +223,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle: Cluster pour charge élevée
+    # Regle: Cluster pour charge élevée
     rules.append(Rule(
         name="R_Cluster_Charge_Elevee",
         conditions={
@@ -253,11 +240,11 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # ============================================================================
-    # RÈGLES DE DÉPLOIEMENT ET CONTENEURISATION
-    # ============================================================================
     
-    # Règle: Docker pour microservices
+    # REGLES DE DÉPLOIEMENT ET CONTENEURISATION
+    
+    
+    # Regle: Docker pour microservices
     rules.append(Rule(
         name="R15_Conteneurs_Microservices",
         conditions={
@@ -273,7 +260,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle: Docker optionnel pour monolithique
+    # Regle: Docker optionnel pour monolithique
     rules.append(Rule(
         name="R_Docker_Monolithique_Optionnel",
         conditions={
@@ -290,7 +277,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=6
     ))
     
-    # Règle: CI/CD pour déploiement continu
+    # Regle: CI/CD pour déploiement continu
     rules.append(Rule(
         name="R16_CICD_DevOps",
         conditions={
@@ -306,11 +293,11 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # ============================================================================
-    # RÈGLES DE BASE DE DONNÉES (enrichies)
-    # ============================================================================
     
-    # Règle: PostgreSQL pour applications transactionnelles
+    # REGLES DE BASE DE DONNÉES (enrichies)
+    
+    
+    # Regle: PostgreSQL pour applications transactionnelles
     rules.append(Rule(
         name="R11_SQL_Transactions",
         conditions={
@@ -327,7 +314,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle: MongoDB pour données non structurées
+    # Regle: MongoDB pour données non structurées
     rules.append(Rule(
         name="R12_NoSQL_NonStructure",
         conditions={
@@ -344,7 +331,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle: Redis pour cache
+    # Regle: Redis pour cache
     rules.append(Rule(
         name="R13_Redis_Cache",
         conditions={
@@ -360,11 +347,11 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # ============================================================================
-    # RÈGLES DE SÉCURITÉ ET CONFORMITÉ
-    # ============================================================================
     
-    # Règle: On-Premise pour données sensibles
+    # REGLES DE SÉCURITÉ ET CONFORMITE
+    
+    
+    # Regle: On-Premise pour données sensibles
     rules.append(Rule(
         name="R8_OnPremise_Securite",
         conditions={
@@ -381,11 +368,11 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # ============================================================================
-    # RÈGLES DE MONITORING ET OBSERVABILITÉ
-    # ============================================================================
     
-    # Règle: Monitoring pour production
+    # REGLES DE MONITORING ET OBSERVABILITE
+    
+    
+    # Regle: Monitoring pour production
     rules.append(Rule(
         name="R_Monitoring_Production",
         conditions={
@@ -405,12 +392,7 @@ def create_knowledge_base() -> List[Rule]:
 
 
 def get_questions() -> List[Dict]:
-    """
-    Retourne la liste des questions à poser à l'utilisateur
-    
-    Returns:
-        Liste de dictionnaires décrivant chaque question
-    """
+
     return [
         {
             "id": "type_application",

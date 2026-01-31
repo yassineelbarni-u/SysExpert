@@ -1,63 +1,34 @@
-"""
-Moteur d'inférence pour le système expert
-Implémente le chaînage avant (forward chaining)
-"""
 from typing import Dict, List, Any, Tuple
 from .rule import Rule
 
-
 class InferenceEngine:
-    """
-    Moteur d'inférence avec chaînage avant
-    
-    Le moteur prend une base de faits initiale et applique les règles
-    de manière itérative jusqu'à ce qu'aucune nouvelle règle ne puisse
-    être appliquée (point fixe).
-    """
-    
+    # initialisation du moteur d'inférence avec des liste de règles
     def __init__(self, rules: List[Rule]):
-        """
-        Initialise le moteur avec une liste de règles
-        
-        Args:
-            rules: Liste des règles du système expert
-        """
+       # tri des règles par priorite
         self.rules = sorted(rules, key=lambda r: r.priority, reverse=True)
         self.applied_rules: List[Rule] = []
         self.inference_trace: List[Dict[str, Any]] = []
-    
+    # inferance avec chainage avant
     def infer(self, initial_facts: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
-        """
-        Effectue l'inférence avec chaînage avant
-        
-        Args:
-            initial_facts: Base de faits initiale (réponses de l'utilisateur)
-            
-        Returns:
-            Tuple contenant:
-            - Base de faits finale (avec conclusions)
-            - Trace d'exécution pour explication
-        """
+      
         facts = initial_facts.copy()
         self.applied_rules = []
         self.inference_trace = []
         
-        # Chaînage avant: appliquer les règles jusqu'au point fixe
+        # Chaînage avant :appliquer les règles jusqu'au point fixe
         changed = True
         iteration = 0
-        max_iterations = 100  # Protection contre boucles infinies
+        max_iterations = 100
         
         while changed and iteration < max_iterations:
             changed = False
             iteration += 1
             
+            # parcourir les règles
             for rule in self.rules:
-                # Si la règle n'a pas encore été appliquée et peut l'être
                 if rule not in self.applied_rules and rule.evaluate(facts):
-                    # Appliquer la règle
                     new_facts = rule.apply(facts)
                     
-                    # Enregistrer la trace
                     trace_entry = {
                         "iteration": iteration,
                         "rule_name": rule.name,
@@ -76,17 +47,9 @@ class InferenceEngine:
         return facts, self.inference_trace
     
     def get_recommendations(self, facts: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """
-        Extrait les recommandations de la base de faits finale
-        
-        Args:
-            facts: Base de faits après inférence
-            
-        Returns:
-            Liste des recommandations structurées avec détails
-        """
+
         recommendations = []
-        
+
         # Extraire les recommandations d'architecture
         if "architecture_recommandee" in facts:
             recommendations.append({
@@ -96,7 +59,7 @@ class InferenceEngine:
                 "raison": facts.get("architecture_raison", ""),
                 "details": facts.get("architecture_details", "")
             })
-        
+
         # Extraire les recommandations de scalabilité
         if "scalabilite_type" in facts:
             recommendations.append({
@@ -188,14 +151,9 @@ class InferenceEngine:
             })
         
         return recommendations
-    
+    # Génère une explication textuelle du raisonnement
     def explain(self) -> List[str]:
-        """
-        Génère une explication textuelle du raisonnement
         
-        Returns:
-            Liste d'explications pour chaque règle appliquée
-        """
         explanations = []
         
         for trace in self.inference_trace:

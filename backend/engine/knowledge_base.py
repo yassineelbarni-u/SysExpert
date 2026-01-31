@@ -1,25 +1,14 @@
-"""
-Base de connaissances du système expert
-Contient toutes les règles d'expertise pour le choix d'architecture et d'infrastructure
-"""
 from typing import List, Dict
 from .rule import Rule
 
 
 def create_knowledge_base() -> List[Rule]:
-    """
-    Crée et retourne la base de connaissances complète
-    
-    Returns:
-        Liste de toutes les règles du système expert
-    """
+
     rules = []
     
-    # ============================================================================
-    # RÈGLES D'ARCHITECTURE APPLICATIVE
-    # ============================================================================
+    # REGLES D'ARCHITECTURE
     
-    # Règle 1: Architecture Microservices pour haute scalabilité
+    # Regle 1: Architecture Microservices pour haute scalabilité
     rules.append(Rule(
         name="R1_Microservices_Scalabilite",
         conditions={
@@ -36,7 +25,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle 2: Architecture Monolithique pour petite équipe et budget limité
+    # Regle 2: Architecture Monolithique pour petite équipe et budget limité
     rules.append(Rule(
         name="R2_Monolithique_Budget",
         conditions={
@@ -53,7 +42,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle 3: Architecture Serverless pour charge variable
+    # Regle 3: Architecture Serverless pour charge variable
     rules.append(Rule(
         name="R3_Serverless_Variable",
         conditions={
@@ -70,7 +59,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle 4: Architecture Event-Driven pour traitement asynchrone
+    # Regle 4: Architecture Event-Driven pour traitement asynchrone
     rules.append(Rule(
         name="R4_EventDriven_Async",
         conditions={
@@ -86,7 +75,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle 5: Architecture Microservices pour équipe distribuée
+    # Regle 5: Architecture Microservices pour équipe distribuée
     rules.append(Rule(
         name="R5_Microservices_Equipe",
         conditions={
@@ -103,7 +92,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Règle 6: Architecture Monolithique Modulaire pour transition
+    # Regle 6: Architecture Monolithique Modulaire pour transition
     rules.append(Rule(
         name="R6_Monolithique_Modulaire",
         conditions={
@@ -120,11 +109,10 @@ def create_knowledge_base() -> List[Rule]:
         priority=6
     ))
     
-    # ============================================================================
-    # RÈGLES D'INFRASTRUCTURE
-    # ============================================================================
     
-    # Règle 7: Cloud Public pour scalabilité et disponibilité
+    # REGLES D'INFRASTRUCTURE
+    
+    # Regle 7: Cloud Public pour scalabilité et disponibilité
     rules.append(Rule(
         name="R7_Cloud_Public",
         conditions={
@@ -141,7 +129,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle 8: On-Premise pour données sensibles
+    # Regle 8: On-Premise pour données sensibles
     rules.append(Rule(
         name="R8_OnPremise_Securite",
         conditions={
@@ -158,7 +146,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle 9: Cloud Hybride pour migration progressive
+    # Regle 9: Cloud Hybride pour migration progressive
     rules.append(Rule(
         name="R9_Hybride_Migration",
         conditions={
@@ -175,7 +163,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle 10: Cloud Public pour startup
+    # Regle 10: Cloud Public pour startup
     rules.append(Rule(
         name="R10_Cloud_Startup",
         conditions={
@@ -192,11 +180,10 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # ============================================================================
-    # RÈGLES DE BASE DE DONNÉES
-    # ============================================================================
+
+    # REGLES DE BASE DE DONNÉES
     
-    # Règle 11: Base de données relationnelle pour transactions
+    # Regle 11: Base de données relationnelle pour transactions
     rules.append(Rule(
         name="R11_SQL_Transactions",
         conditions={
@@ -212,7 +199,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Règle 12: NoSQL pour données non structurées
+    # Regle 12: NoSQL pour données non structurées
     rules.append(Rule(
         name="R12_NoSQL_NonStructure",
         conditions={
@@ -221,7 +208,7 @@ def create_knowledge_base() -> List[Rule]:
             "transactions_acid": "non"
         },
         conclusion={
-            "database_recommandee": "NoSQL (MongoDB, Cassandra)",
+            "database_recommandee": "NoSQL (MongoDB, couchDB)",
             "database_confidence": "élevée",
             "database_raison": "Flexibilité du schéma et scalabilité horizontale"
         },
@@ -229,7 +216,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Règle 13: Base de données en mémoire pour cache
+    # Regle 13: Base de données en mémoire pour cache
     rules.append(Rule(
         name="R13_InMemory_Cache",
         conditions={
@@ -245,7 +232,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Règle 14: Base de données graphe pour relations complexes
+    # Regle 14: Base de données graphe pour relations complexes
     rules.append(Rule(
         name="R14_Graph_Relations",
         conditions={
@@ -261,11 +248,10 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # ============================================================================
-    # RÈGLES DE TECHNOLOGIES ET FRAMEWORKS
-    # ============================================================================
     
-    # Règle 15: Conteneurisation pour microservices
+    # REGLES DE TECHNOLOGIES ET FRAMEWORKS
+    
+    # Regle 15: Conteneurisation pour microservices
     rules.append(Rule(
         name="R15_Conteneurs_Microservices",
         conditions={
@@ -280,7 +266,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Règle 16: CI/CD pour déploiement continu
+    # Regle 16: CI/CD pour déploiement continu
     rules.append(Rule(
         name="R16_CICD_DevOps",
         conditions={
@@ -296,7 +282,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=6
     ))
     
-    # Règle 17: Message Queue pour event-driven
+    # Regle 17: Message Queue pour event-driven
     rules.append(Rule(
         name="R17_MessageQueue_Events",
         conditions={
@@ -311,7 +297,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Règle 18: API Gateway pour microservices
+    # Regle 18: API Gateway pour microservices
     rules.append(Rule(
         name="R18_APIGateway_Microservices",
         conditions={
@@ -331,12 +317,7 @@ def create_knowledge_base() -> List[Rule]:
 
 
 def get_questions() -> List[Dict]:
-    """
-    Retourne la liste des questions à poser à l'utilisateur
-    
-    Returns:
-        Liste de dictionnaires décrivant chaque question
-    """
+
     return [
         {
             "id": "type_application",

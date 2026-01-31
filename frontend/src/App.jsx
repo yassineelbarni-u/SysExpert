@@ -80,12 +80,11 @@ function App() {
     setResults(null);
   };
 
-  // Vue d'accueil
   if (currentView === 'home') {
     return (
       <div className="container">
         <header className="header">
-          <h1>🎯 Système Expert d'Architecture</h1>
+          <h1> Système Expert d'Architecture</h1>
           <p>Aide au choix d'architecture applicative et d'infrastructure</p>
         </header>
 
@@ -123,7 +122,7 @@ function App() {
     return (
       <div className="container">
         <header className="header">
-          <h1>🎯 Système Expert d'Architecture</h1>
+          <h1> Système Expert d'Architecture</h1>
           <p>Question {currentQuestionIndex + 1} sur {questions.length}</p>
         </header>
 
