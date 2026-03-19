@@ -48,7 +48,7 @@ def create_knowledge_base() -> List[Rule]:
     
     # REGLES DE SCALABILITÉ (NOUVELLES - très détaillées)
     
-    # Regle: Scalabilité Horizontale pour Microservices
+    # Regle 1: Scalabilité Horizontale pour Microservices
     rules.append(Rule(
         name="R_Scalabilite_Horizontale_Microservices",
         conditions={
@@ -64,7 +64,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Regle: Scalabilité Verticale pour Monolithique
+    # Regle 2: Scalabilité Verticale pour Monolithique
     rules.append(Rule(
         name="R_Scalabilite_Verticale_Monolithique",
         conditions={
@@ -81,7 +81,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Regle: Scalabilité Horizontale pour Monolithique haute charge
+    # Regle 3: Scalabilité Horizontale pour Monolithique haute charge
     rules.append(Rule(
         name="R_Scalabilite_Horizontale_Monolithique_Haute",
         conditions={
@@ -100,7 +100,7 @@ def create_knowledge_base() -> List[Rule]:
     
     # REGLES DE CHOIX TECHNOLOGIQUE (Java vs JavaScript vs autres)
     
-    # Regle: Java pour applications enterprise
+    # Regle 1: Java pour applications enterprise
     rules.append(Rule(
         name="R_Tech_Java_Enterprise",
         conditions={
@@ -118,7 +118,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Regle: JavaScript/Node.js pour applications temps réel
+    # Regle 2: JavaScript/Node.js pour applications temps réel
     rules.append(Rule(
         name="R_Tech_NodeJS_RealTime",
         conditions={
@@ -135,7 +135,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Regle: JavaScript pour équipe frontend
+    # Regle 3: JavaScript pour équipe frontend
     rules.append(Rule(
         name="R_Tech_JavaScript_FullStack",
         conditions={
@@ -152,7 +152,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=7
     ))
     
-    # Regle: Python pour data-intensive
+    # Regle 4: Python pour data-intensive
     rules.append(Rule(
         name="R_Tech_Python_Data",
         conditions={
@@ -172,7 +172,7 @@ def create_knowledge_base() -> List[Rule]:
     # REGLES D'INFRASTRUCTURE ET TAILLE SERVEUR (très détaillées)
     
     
-    # Regle: Cloud Public pour scalabilité critique
+    # Regle 1: Cloud Public pour scalabilité critique
     rules.append(Rule(
         name="R7_Cloud_Public",
         conditions={
@@ -190,7 +190,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Regle: Taille serveur pour charge faible
+    # Regle 2: Taille serveur pour charge faible
     rules.append(Rule(
         name="R_Serveur_Petit_Charge_Faible",
         conditions={
@@ -207,7 +207,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Regle: Taille serveur pour charge moyenne
+    # Regle 3: Taille serveur pour charge moyenne
     rules.append(Rule(
         name="R_Serveur_Moyen_Charge_Moyenne",
         conditions={
@@ -223,7 +223,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=8
     ))
     
-    # Regle: Cluster pour charge élevée
+    # Regle 4: Cluster pour charge élevée
     rules.append(Rule(
         name="R_Cluster_Charge_Elevee",
         conditions={
@@ -244,7 +244,7 @@ def create_knowledge_base() -> List[Rule]:
     # REGLES DE DÉPLOIEMENT ET CONTENEURISATION
     
     
-    # Regle: Docker pour microservices
+    # Regle 1: Docker pour microservices
     rules.append(Rule(
         name="R15_Conteneurs_Microservices",
         conditions={
@@ -260,7 +260,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Regle: Docker optionnel pour monolithique
+    # Regle 2: Docker optionnel pour monolithique
     rules.append(Rule(
         name="R_Docker_Monolithique_Optionnel",
         conditions={
@@ -273,7 +273,7 @@ def create_knowledge_base() -> List[Rule]:
             "conteneurisation_details": "Un seul container pour le monolithe. Simplifie CI/CD. Peut utiliser Docker Compose pour dev local avec BDD.",
             "conteneurisation_confidence": "moyenne"
         },
-        description="Docker recommandé même pour monolithique si déploiements fréquents",
+        description="Docker recommandé même pour monolithique si deploiements frequent",
         priority=6
     ))
     

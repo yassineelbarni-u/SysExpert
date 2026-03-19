@@ -4,7 +4,7 @@ from .rule import Rule
 class InferenceEngine:
     # initialisation du moteur d'inférence avec des liste de règles
     def __init__(self, rules: List[Rule]):
-       # tri des règles par priorite
+
         self.rules = sorted(rules, key=lambda r: r.priority, reverse=True)
         self.applied_rules: List[Rule] = []
         self.inference_trace: List[Dict[str, Any]] = []
