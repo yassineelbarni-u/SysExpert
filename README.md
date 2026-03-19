@@ -4,6 +4,8 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-green.svg)](https://fastapi.tiangolo.com/)
+[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.java.com/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-19.2-61dafb.svg)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -50,6 +52,13 @@ Projet développé dans le cadre du cours de **Systèmes Experts** à l'ILISI. I
 - **Système d'explication** transparent du raisonnement
 - **Trace d'inférence** détaillée pour chaque consultation
 
+### Backend alternatif (Java + Spring Boot)
+
+- **Moteur d'inférence** identique, réécrit en Java
+- **Base de connaissances** complète (mêmes 30+ règles)
+- **API REST** exposant les mêmes endpoints (`/api/consult`, `/api/questions`, `/api/rules`, `/api/health`)
+- **Configuration CORS** prête pour le frontend React
+
 ### Frontend (React.js)
 
 - **Interface moderne** avec design dark premium
@@ -60,11 +69,17 @@ Projet développé dans le cadre du cours de **Systèmes Experts** à l'ILISI. I
 
 ## 🛠️ Technologies Utilisées
 
-**Backend:**
+**Backend Python:**
 - Python 3.8+
 - FastAPI (framework web moderne)
 - Pydantic (validation de données)
 - Uvicorn (serveur ASGI)
+
+**Backend Java (Spring Boot) :**
+- Java 17+
+- Spring Boot 4.x
+- Spring Web (API REST)
+- Maven (gestion des dépendances)
 
 **Frontend:**
 - React.js 19
@@ -76,11 +91,12 @@ Projet développé dans le cadre du cours de **Systèmes Experts** à l'ILISI. I
 
 ### Prérequis
 
-- Python 3.8+
+- Python 3.8+ (backend Python)
+- Java 17+ et Maven (backend Spring Boot)
 - Node.js 16+
 - npm ou yarn
 
-### Backend
+### Backend Python
 
 ```bash
 cd backend
@@ -99,6 +115,20 @@ python main.py
 Le serveur démarre sur `http://localhost:8000`  
 Documentation API: `http://localhost:8000/docs`
 
+### Backend Spring Boot (alternative Java)
+
+```bash
+cd backend/expert-system
+
+# Lancer avec Maven
+mvn spring-boot:run
+```
+
+Le serveur démarre sur `http://localhost:8080`  
+Endpoints disponibles : `/api/consult`, `/api/questions`, `/api/rules`, `/api/health`
+
+> **💡 Recommandation :** Pour une application de type enterprise avec transactions complexes, typage fort et un écosystème Java existant, choisissez le **backend Spring Boot**. Pour un prototypage rapide, du traitement de données (ML/IA), ou une petite équipe Python, choisissez le **backend Python/FastAPI**.
+
 ### Frontend
 
 ```bash
@@ -107,15 +137,20 @@ cd frontend
 # Installer les dépendances
 npm install
 
-# Lancer l'application
+# Lancer l'application (se connecte au backend sur le port 8000 par défaut)
 npm run dev
 ```
 
 L'application démarre sur `http://localhost:5173`
 
+> Pour utiliser le backend Spring Boot (port 8080) avec le frontend, modifiez `API_BASE_URL` dans `frontend/src/App.jsx` :
+> ```js
+> const API_BASE_URL = 'http://localhost:8080/api';
+> ```
+
 ## 💡 Utilisation
 
-1. **Démarrer le backend** (port 8000)
+1. **Démarrer le backend Python** (port 8000) **ou le backend Spring Boot** (port 8080)
 2. **Démarrer le frontend** (port 5173)
 3. **Ouvrir** `http://localhost:5173` dans votre navigateur
 4. **Répondre** aux 16 questions sur votre projet
@@ -173,8 +208,27 @@ projet_SYS_EXPERT/
 │   ├── api/
 │   │   ├── routes.py             # Endpoints REST
 │   │   └── models.py             # Modèles Pydantic
-│   └── tests/
-│       └── test_inference.py     # Tests unitaires
+│   ├── tests/
+│   │   └── test_inference.py     # Tests unitaires
+│   └── expert-system/            # Backend Spring Boot (Java)
+│       ├── pom.xml
+│       └── src/main/java/com/ilisi/expert_system/
+│           ├── ExpertSystemApplication.java
+│           ├── engine/
+│           │   ├── Rule.java
+│           │   ├── InferenceEngine.java
+│           │   └── KnowledgeBaseService.java
+│           ├── model/
+│           │   ├── ConsultationRequest.java
+│           │   ├── ConsultationResponse.java
+│           │   ├── Recommendation.java
+│           │   ├── RuleTrace.java
+│           │   ├── RuleInfo.java
+│           │   └── Question.java
+│           ├── controller/
+│           │   └── ExpertSystemController.java
+│           └── config/
+│               └── CorsConfig.java
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx               # Application React
@@ -187,11 +241,15 @@ projet_SYS_EXPERT/
 ## 🔬 Tests
 
 ```bash
-# Backend
+# Backend Python
 cd backend
 python tests/test_inference.py
 
-# Tester l'API
+# Backend Spring Boot
+cd backend/expert-system
+mvn test
+
+# Tester l'API Python
 # Ouvrir http://localhost:8000/docs (Swagger UI)
 ```
 
