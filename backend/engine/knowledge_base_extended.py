@@ -297,7 +297,7 @@ def create_knowledge_base() -> List[Rule]:
     # REGLES DE BASE DE DONNÉES (enrichies)
     
     
-    # Regle: PostgreSQL pour applications transactionnelles
+    # Regle 1: PostgreSQL pour applications transactionnelles
     rules.append(Rule(
         name="R11_SQL_Transactions",
         conditions={
@@ -314,7 +314,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=10
     ))
     
-    # Regle: MongoDB pour données non structurées
+    # Regle 2: MongoDB pour données non structurées
     rules.append(Rule(
         name="R12_NoSQL_NonStructure",
         conditions={
@@ -331,7 +331,7 @@ def create_knowledge_base() -> List[Rule]:
         priority=9
     ))
     
-    # Regle: Redis pour cache
+    # Regle 3: Redis pour cache
     rules.append(Rule(
         name="R13_Redis_Cache",
         conditions={
@@ -351,7 +351,7 @@ def create_knowledge_base() -> List[Rule]:
     # REGLES DE SÉCURITÉ ET CONFORMITE
     
     
-    # Regle: On-Premise pour données sensibles
+    # Regle 1: On-Premise pour données sensibles
     rules.append(Rule(
         name="R8_OnPremise_Securite",
         conditions={
@@ -372,7 +372,7 @@ def create_knowledge_base() -> List[Rule]:
     # REGLES DE MONITORING ET OBSERVABILITE
     
     
-    # Regle: Monitoring pour production
+    # Regle 1: Monitoring pour production
     rules.append(Rule(
         name="R_Monitoring_Production",
         conditions={
